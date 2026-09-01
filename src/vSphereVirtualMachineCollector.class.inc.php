@@ -107,7 +107,7 @@ class vSphereVirtualMachineCollector extends vSphereCollector
 				}
 			}
 
-			$aVirtualMachines = $vhost->findAllManagedObjects('VirtualMachine', array('config', 'runtime', 'guest', 'network', 'storage'));
+			$aVirtualMachines = $vhost->findAllManagedObjects('VirtualMachine', array('config', 'runtime', 'guest', 'network', 'storage', 'customValue'));
 
 			$idx = 1;
 			foreach ($aVirtualMachines as $oVirtualMachine) {
