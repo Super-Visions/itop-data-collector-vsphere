@@ -469,7 +469,7 @@ class vSphereVirtualMachineCollector extends vSphereCollector
 		}
 
 		$sDetailedDataPrettyName = null;
-		foreach ($oVirtualMachine->config->extraConfig as $oOption) {
+		foreach ($oVirtualMachine->config->extraConfig ?? [] as $oOption) {
 			if (isset($oOption) && $oOption->key === 'guestInfo.detailed.data') {
 				if (preg_match("/prettyName='([^']*)'/", $oOption->value, $aMatches)) {
 					$sDetailedDataPrettyName = $aMatches[1];
