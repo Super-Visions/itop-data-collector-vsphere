@@ -333,7 +333,7 @@ class vSphereVirtualMachineCollector extends vSphereCollector
 		);
 
 		foreach (static::GetCustomFields(__CLASS__) as $sAttCode => $sFieldDefinition) {
-			$aData[$sAttCode] = static::GetCustomFieldValue($oVirtualMachine, $sFieldDefinition) ?: $aData[$sAttCode] ?: '';
+			$aData[$sAttCode] = static::GetCustomFieldValue($oVirtualMachine, $sFieldDefinition) ?? $aData[$sAttCode] ?? '';
 		}
 
 		$oCollectionPlan = vSphereCollectionPlan::GetPlan();
@@ -597,6 +597,10 @@ class vSphereVirtualMachineCollector extends vSphereCollector
 			$aData['managementip_id'] = $aVM['managementip_id'];
 		} else {
 			$aData['managementip'] = $aVM['managementip'];
+		}
+
+		foreach (array_keys(static::GetCustomFields(__CLASS__)) as $sAttribute) {
+			$aData[$sAttribute] = $aVM[$sAttribute];
 		}
 
 		return $aData;
